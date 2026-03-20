@@ -25,19 +25,21 @@ export function Header() {
   return (
     <header className="bg-background border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => scrollToSection('hero')}
+          className="flex items-center gap-2 shrink-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm"
+          aria-label="DIBRO SAC — Inicio"
+        >
           <Image
-            src="/images/dibro-logo.jpg"
-            alt="Logo DIBRO SAC"
-            width={40}
-            height={40}
-            className="rounded"
+            src="/dibro-logo.png"
+            alt="DIBRO SAC"
+            width={320}
+            height={264}
+            priority
+            className="h-10 w-auto md:h-[52px] object-contain object-left"
           />
-          <div>
-            <h1 className="text-xl font-bold text-primary">DIBRO</h1>
-            <p className="text-xs text-muted-foreground">SAC</p>
-          </div>
-        </div>
+        </button>
 
         <nav className="hidden md:flex items-center gap-8">
           <button

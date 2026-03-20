@@ -5,12 +5,12 @@ import { CheckCircle } from 'lucide-react'
 
 export function About() {
   const features = [
-    'Premium quality materials and components',
-    'Competitive pricing with bulk discounts',
-    'Fast and reliable delivery across Peru',
-    'Professional technical support and guidance',
-    'OEM and custom solutions available',
-    'Certified products meeting industry standards',
+    'Materiales y componentes de primera calidad',
+    'Precios competitivos y descuentos por volumen',
+    'Entrega confiable en todo el Perú',
+    'Asesoría técnica profesional',
+    'Soluciones OEM y a medida',
+    'Productos certificados según normativa',
   ]
 
   return (
@@ -24,24 +24,23 @@ export function About() {
           className="max-w-4xl mx-auto"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
-            About DIBRO SAC
+            Sobre DIBRO SAC
           </h2>
 
           <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-            DIBRO SAC is a leading supplier of industrial plumbing and gas parts
-            in Peru. With over 15 years of experience, we have built our
-            reputation on providing high-quality products, exceptional customer
-            service, and reliable delivery. Our team of experts works closely
-            with customers to understand their needs and deliver tailored
-            solutions.
+            DIBRO SAC es un proveedor líder de fontanería industrial y piezas
+            para gas en el Perú. Con más de 15 años de trayectoria, hemos
+            construido nuestra reputación ofreciendo productos de calidad,
+            atención cercana y entregas puntuales. Nuestro equipo trabaja junto
+            a cada cliente para entender sus necesidades y ofrecer soluciones
+            adecuadas.
           </p>
 
           <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-            We partner with the best manufacturers worldwide to ensure every
-            product meets the highest standards of quality and performance.
-            Whether you're a contractor, installer, or business owner, DIBRO
-            SAC is your trusted partner for all your plumbing and gas supply
-            needs.
+            Nos asociamos con fabricantes de primer nivel para que cada producto
+            cumpla los más altos estándares de calidad y desempeño. Ya sea que
+            seas contratista, instalador o empresa, DIBRO SAC es tu aliado en
+            suministros de fontanería y gas.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

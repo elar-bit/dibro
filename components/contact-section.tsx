@@ -15,38 +15,38 @@ export function ContactSection() {
   const contactChannels = [
     {
       icon: Phone,
-      title: 'Phone',
+      title: 'Teléfono',
       value: '+51 987 654 321',
       href: 'tel:+51987654321',
-      description: 'Call us for immediate assistance',
+      description: 'Llámanos para atención inmediata',
     },
     {
       icon: Mail,
-      title: 'Email',
+      title: 'Correo',
       value: 'info@dibro.pe',
       href: 'mailto:info@dibro.pe',
-      description: 'Send us your inquiries',
+      description: 'Envíanos tus consultas',
     },
     {
       icon: MessageCircle,
       title: 'WhatsApp',
-      value: 'Chat with us',
+      value: 'Escríbenos',
       href: 'https://wa.me/51987654321',
-      description: 'Quick response on WhatsApp',
+      description: 'Respuesta rápida por WhatsApp',
     },
     {
       icon: MapPin,
-      title: 'Location',
-      value: 'Lima, Peru',
+      title: 'Ubicación',
+      value: 'Lima, Perú',
       href: 'https://maps.google.com',
-      description: 'Visit our office',
+      description: 'Visita nuestra oficina',
     },
   ]
 
   const businessHours = [
-    { day: 'Monday - Friday', hours: '8:00 AM - 6:00 PM' },
-    { day: 'Saturday', hours: '9:00 AM - 2:00 PM' },
-    { day: 'Sunday', hours: 'Closed' },
+    { day: 'Lunes a viernes', hours: '8:00 – 18:00 h' },
+    { day: 'Sábado', hours: '9:00 – 14:00 h' },
+    { day: 'Domingo', hours: 'Cerrado' },
   ]
 
   return (
@@ -60,14 +60,14 @@ export function ContactSection() {
           className="max-w-2xl mx-auto text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Get in Touch
+            Contacto
           </h2>
           <p className="text-lg text-muted-foreground">
-            Have a question or need a custom solution? Our team is here to help
+            ¿Tienes dudas o necesitas una solución a medida? Estamos para
+            ayudarte
           </p>
         </motion.div>
 
-        {/* Contact Channels */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {contactChannels.map((channel, index) => {
             const Icon = channel.icon
@@ -98,9 +98,7 @@ export function ContactSection() {
           })}
         </div>
 
-        {/* Two Column Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Business Hours */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -111,7 +109,7 @@ export function ContactSection() {
             <div className="flex items-center gap-3 mb-6">
               <Clock className="w-6 h-6 text-primary" />
               <h3 className="text-xl font-bold text-foreground">
-                Business Hours
+                Horario de atención
               </h3>
             </div>
 
@@ -132,12 +130,11 @@ export function ContactSection() {
             </div>
 
             <p className="text-sm text-muted-foreground mt-6 p-4 bg-muted rounded-lg">
-              We respond to inquiries within 2 hours during business hours.
-              WhatsApp messages are answered immediately.
+              Respondemos consultas en un plazo de hasta 2 horas en horario
+              hábil. En WhatsApp solemos responder al instante.
             </p>
           </motion.div>
 
-          {/* Why Choose Us */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -147,17 +144,19 @@ export function ContactSection() {
           >
             <div className="flex items-center gap-3 mb-6">
               <Globe className="w-6 h-6 text-primary" />
-              <h3 className="text-xl font-bold text-foreground">Why DIBRO?</h3>
+              <h3 className="text-xl font-bold text-foreground">
+                ¿Por qué DIBRO?
+              </h3>
             </div>
 
             <ul className="space-y-3">
               {[
-                'Premium quality products from trusted manufacturers',
-                'Competitive pricing with volume discounts',
-                'Fast delivery throughout Peru',
-                'Expert technical support and consultation',
-                'Flexible payment terms for businesses',
-                'Dedicated account management',
+                'Productos de calidad de fabricantes reconocidos',
+                'Precios competitivos y descuentos por volumen',
+                'Entrega ágil a nivel nacional',
+                'Soporte técnico y asesoría especializada',
+                'Condiciones de pago flexibles para empresas',
+                'Atención personalizada por cuenta',
               ].map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <span className="text-primary font-bold mt-1">✓</span>
@@ -168,7 +167,6 @@ export function ContactSection() {
           </motion.div>
         </div>
 
-        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -177,13 +175,13 @@ export function ContactSection() {
           className="mt-12 text-center"
         >
           <p className="text-muted-foreground mb-6">
-            Ready to start your project? Let's connect.
+            ¿Listo para tu próximo proyecto? Hablemos.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="tel:+51987654321">
               <Button className="gap-2" size="lg">
                 <Phone size={20} />
-                Call Us Now
+                Llamar ahora
               </Button>
             </a>
             <a
@@ -193,7 +191,7 @@ export function ContactSection() {
             >
               <Button variant="outline" className="gap-2" size="lg">
                 <MessageCircle size={20} />
-                Message on WhatsApp
+                Escribir por WhatsApp
               </Button>
             </a>
           </div>

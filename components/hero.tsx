@@ -17,8 +17,8 @@ export function Hero() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
-              Industrial Plumbing &
-              <span className="block text-primary mt-2">Gas Parts Supplier</span>
+              Fontanería industrial y
+              <span className="block text-primary mt-2">suministros de gas</span>
             </h1>
           </motion.div>
 
@@ -28,7 +28,8 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
-            Premium quality plumbing fixtures, gas components, and industrial parts for businesses throughout Peru. Trusted by professionals for over 15 years.
+            Componentes y repuestos de primera calidad para empresas en todo el
+            Perú. Más de 15 años acompañando a profesionales del sector.
           </motion.p>
 
           <motion.div
@@ -46,7 +47,7 @@ export function Hero() {
               size="lg"
               className="text-base"
             >
-              Browse Products
+              Ver catálogo
             </Button>
             <Button
               onClick={() => {
@@ -58,11 +59,10 @@ export function Hero() {
               size="lg"
               className="text-base"
             >
-              Get in Touch
+              Contáctanos
             </Button>
           </motion.div>
 
-          {/* Trust Indicators */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -74,19 +74,19 @@ export function Hero() {
                 <p className="text-2xl md:text-3xl font-bold text-primary">
                   15+
                 </p>
-                <p className="text-sm text-muted-foreground">Years Experience</p>
+                <p className="text-sm text-muted-foreground">Años de experiencia</p>
               </div>
               <div>
                 <p className="text-2xl md:text-3xl font-bold text-primary">
                   500+
                 </p>
-                <p className="text-sm text-muted-foreground">Products</p>
+                <p className="text-sm text-muted-foreground">Productos</p>
               </div>
               <div>
                 <p className="text-2xl md:text-3xl font-bold text-primary">
                   1000+
                 </p>
-                <p className="text-sm text-muted-foreground">Customers</p>
+                <p className="text-sm text-muted-foreground">Clientes</p>
               </div>
             </div>
           </motion.div>

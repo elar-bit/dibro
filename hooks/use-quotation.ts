@@ -150,6 +150,11 @@ export function useQuotation() {
     })
   }, [])
 
+  const totalQuantity = quotation.items.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  )
+
   return {
     quotation,
     addItem,
@@ -157,6 +162,9 @@ export function useQuotation() {
     removeItem,
     clearQuotation,
     isLoading,
+    /** Líneas distintas en la cotización */
     itemCount: quotation.items.length,
+    /** Unidades totales (para badge del carrito) */
+    totalQuantity,
   }
 }

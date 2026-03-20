@@ -5,9 +5,10 @@ import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { X, Send } from 'lucide-react'
 import { buildWhatsAppMessage } from '@/lib/whatsapp-helper'
+import type { QuotationData } from '@/hooks/use-quotation'
 
 interface QuotationFormProps {
-  quotation: any
+  quotation: QuotationData
   onClose: () => void
 }
 
@@ -19,8 +20,6 @@ export function QuotationForm({ quotation, onClose }: QuotationFormProps) {
     company: '',
     message: '',
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -31,25 +30,18 @@ export function QuotationForm({ quotation, onClose }: QuotationFormProps) {
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Validate form
     if (!formData.name || !formData.email || !formData.phone) {
-      alert('Please fill in all required fields')
+      alert('Completa todos los campos obligatorios')
       return
     }
 
-    // Build WhatsApp message
     const whatsappMessage = buildWhatsAppMessage(formData, quotation)
-
-    // Send to WhatsApp
     const whatsappUrl = `https://wa.me/51987654321?text=${encodeURIComponent(whatsappMessage)}`
-
-    // Open WhatsApp
     window.open(whatsappUrl, '_blank')
 
-    // Reset form
     setFormData({
       name: '',
       email: '',
@@ -57,7 +49,6 @@ export function QuotationForm({ quotation, onClose }: QuotationFormProps) {
       company: '',
       message: '',
     })
-
     onClose()
   }
 
@@ -66,7 +57,7 @@ export function QuotationForm({ quotation, onClose }: QuotationFormProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60] p-4"
       onClick={onClose}
     >
       <motion.div
@@ -76,76 +67,76 @@ export function QuotationForm({ quotation, onClose }: QuotationFormProps) {
         onClick={(e) => e.stopPropagation()}
         className="bg-background rounded-lg border border-border shadow-lg max-w-md w-full p-6 max-h-screen overflow-y-auto"
       >
-        {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-foreground">Send Quote via WhatsApp</h2>
+          <h2 className="text-2xl font-bold text-foreground">
+            Enviar cotización por WhatsApp
+          </h2>
           <button
+            type="button"
             onClick={onClose}
             className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Cerrar"
           >
             <X size={24} />
           </button>
         </div>
 
-        {/* Quote Summary */}
         {quotation.items.length > 0 && (
           <div className="bg-card p-4 rounded-lg border border-border mb-6">
-            <h3 className="font-semibold text-foreground mb-2">Quote Summary</h3>
+            <h3 className="font-semibold text-foreground mb-2">
+              Resumen de cotización
+            </h3>
             <div className="space-y-1 text-sm">
               <div className="flex justify-between text-muted-foreground">
-                <span>Items:</span>
+                <span>Ítems:</span>
                 <span>{quotation.items.length}</span>
               </div>
               <div className="flex justify-between text-muted-foreground">
                 <span>Subtotal:</span>
-                <span>${quotation.subtotal.toFixed(2)}</span>
+                <span>US$ {quotation.subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between font-semibold text-primary border-t border-border pt-2 mt-2">
                 <span>Total:</span>
-                <span>${quotation.total.toFixed(2)}</span>
+                <span>US$ {quotation.total.toFixed(2)}</span>
               </div>
             </div>
           </div>
         )}
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-1.5">
-              Full Name *
+              Nombre completo *
             </label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="John Doe"
+              placeholder="Tu nombre"
               className="w-full px-3 py-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder-muted-foreground"
               required
             />
           </div>
 
-          {/* Email */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-1.5">
-              Email *
+              Correo electrónico *
             </label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="john@example.com"
+              placeholder="correo@empresa.com"
               className="w-full px-3 py-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder-muted-foreground"
               required
             />
           </div>
 
-          {/* Phone */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-1.5">
-              Phone Number *
+              Teléfono *
             </label>
             <input
               type="tel"
@@ -158,37 +149,34 @@ export function QuotationForm({ quotation, onClose }: QuotationFormProps) {
             />
           </div>
 
-          {/* Company */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-1.5">
-              Company Name
+              Empresa
             </label>
             <input
               type="text"
               name="company"
               value={formData.company}
               onChange={handleChange}
-              placeholder="Your Company"
+              placeholder="Nombre de la empresa"
               className="w-full px-3 py-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder-muted-foreground"
             />
           </div>
 
-          {/* Message */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-1.5">
-              Additional Message
+              Mensaje adicional
             </label>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Any special requirements or notes..."
+              placeholder="Requisitos especiales o comentarios…"
               rows={3}
               className="w-full px-3 py-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder-muted-foreground resize-none"
             />
           </div>
 
-          {/* Buttons */}
           <div className="flex gap-3 pt-4">
             <Button
               type="button"
@@ -196,18 +184,17 @@ export function QuotationForm({ quotation, onClose }: QuotationFormProps) {
               onClick={onClose}
               className="flex-1"
             >
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" className="flex-1 gap-2">
               <Send size={18} />
-              Send via WhatsApp
+              Enviar por WhatsApp
             </Button>
           </div>
         </form>
 
-        {/* Info */}
         <p className="text-xs text-muted-foreground text-center mt-4">
-          You will be redirected to WhatsApp to send the quotation to DIBRO SAC
+          Se abrirá WhatsApp para enviar la cotización a DIBRO SAC
         </p>
       </motion.div>
     </motion.div>

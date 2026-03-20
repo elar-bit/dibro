@@ -23,61 +23,55 @@ export function buildWhatsAppMessage(
   contactInfo: ContactForm,
   quotation: QuotationData
 ): string {
-  let message = '🎯 *QUOTATION REQUEST FROM DIBRO WEBSITE*\n\n'
+  let message = '🎯 *SOLICITUD DE COTIZACIÓN – WEB DIBRO*\n\n'
 
-  // Contact Information
-  message += '*📋 CONTACT INFORMATION:*\n'
-  message += `Name: ${contactInfo.name}\n`
-  message += `Email: ${contactInfo.email}\n`
-  message += `Phone: ${contactInfo.phone}\n`
+  message += '*📋 DATOS DE CONTACTO:*\n'
+  message += `Nombre: ${contactInfo.name}\n`
+  message += `Correo: ${contactInfo.email}\n`
+  message += `Teléfono: ${contactInfo.phone}\n`
 
   if (contactInfo.company) {
-    message += `Company: ${contactInfo.company}\n`
+    message += `Empresa: ${contactInfo.company}\n`
   }
 
   message += '\n'
 
-  // Quotation Items
   if (quotation.items.length > 0) {
-    message += '*📦 REQUESTED ITEMS:*\n'
+    message += '*📦 PRODUCTOS SOLICITADOS:*\n'
     message += '─'.repeat(50) + '\n\n'
 
     quotation.items.forEach((item, index) => {
       const itemTotal = (item.price * item.quantity).toFixed(2)
       message += `${index + 1}. *${item.name}*\n`
-      message += `   Category: ${item.category}\n`
-      message += `   Unit Price: $${item.price.toFixed(2)}\n`
-      message += `   Quantity: ${item.quantity}\n`
-      message += `   Subtotal: $${itemTotal}\n\n`
+      message += `   Categoría: ${item.category}\n`
+      message += `   Precio unit.: US$ ${item.price.toFixed(2)}\n`
+      message += `   Cantidad: ${item.quantity}\n`
+      message += `   Subtotal: US$ ${itemTotal}\n\n`
     })
 
     message += '─'.repeat(50) + '\n\n'
 
-    // Totals
-    message += '*💰 QUOTATION TOTALS:*\n'
-    message += `Subtotal: $${quotation.subtotal.toFixed(2)}\n`
-    message += `Tax (18%): $${quotation.tax.toFixed(2)}\n`
-    message += `*TOTAL: $${quotation.total.toFixed(2)}*\n\n`
+    message += '*💰 TOTALES:*\n'
+    message += `Subtotal: US$ ${quotation.subtotal.toFixed(2)}\n`
+    message += `IGV (18%): US$ ${quotation.tax.toFixed(2)}\n`
+    message += `*TOTAL: US$ ${quotation.total.toFixed(2)}*\n\n`
   }
 
-  // Additional Message
   if (contactInfo.message) {
-    message += '*💬 ADDITIONAL MESSAGE:*\n'
+    message += '*💬 MENSAJE ADICIONAL:*\n'
     message += `${contactInfo.message}\n\n`
   }
 
-  // Footer
   message += '─'.repeat(50) + '\n'
-  message += 'Generated from: DIBRO SAC Website\n'
-  message += `Date: ${new Date().toLocaleDateString()}\n`
-  message += `Time: ${new Date().toLocaleTimeString()}\n`
+  message += 'Generado desde el sitio web DIBRO SAC\n'
+  message += `Fecha: ${new Date().toLocaleDateString('es-PE')}\n`
+  message += `Hora: ${new Date().toLocaleTimeString('es-PE')}\n`
 
   return message
 }
 
 export function getWhatsAppContactNumber(): string {
-  // Peru WhatsApp number for DIBRO SAC
-  return '51987654321' // This should be replaced with the actual WhatsApp business number
+  return '51987654321'
 }
 
 export function openWhatsApp(message: string, phoneNumber?: string): void {

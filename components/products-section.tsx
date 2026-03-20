@@ -6,18 +6,25 @@ import { products } from '@/lib/products'
 import { useQuotation } from '@/hooks/use-quotation'
 import { motion } from 'framer-motion'
 
-const CATEGORIES = ['All', 'Pipes', 'Valves', 'Fittings', 'Gas Parts', 'Filters', 'Gauges']
+const CATEGORIAS = [
+  'Todos',
+  'Tuberías',
+  'Válvulas',
+  'Racores',
+  'Gas',
+  'Filtros',
+  'Medidores',
+] as const
 
 export function ProductsSection() {
-  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [selectedCategory, setSelectedCategory] = useState<string>('Todos')
   const [searchQuery, setSearchQuery] = useState('')
   const { quotation, addItem } = useQuotation()
 
-  // Filter products
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       const matchesCategory =
-        selectedCategory === 'All' || product.category === selectedCategory
+        selectedCategory === 'Todos' || product.category === selectedCategory
       const matchesSearch =
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.description.toLowerCase().includes(searchQuery.toLowerCase())
@@ -25,7 +32,6 @@ export function ProductsSection() {
     })
   }, [selectedCategory, searchQuery])
 
-  // Get quantity for each product in quotation
   const getProductQuantity = (productId: string) => {
     return (
       quotation.items.find((item) => item.id === productId)?.quantity || 0
@@ -35,7 +41,6 @@ export function ProductsSection() {
   return (
     <section id="products" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,14 +49,14 @@ export function ProductsSection() {
           className="max-w-2xl mx-auto text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Our Products
+            Nuestros productos
           </h2>
           <p className="text-lg text-muted-foreground">
-            Browse our comprehensive catalog of quality plumbing and gas parts
+            Explora nuestro catálogo de piezas de fontanería y gas para
+            instalaciones profesionales
           </p>
         </motion.div>
 
-        {/* Search Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,15 +65,14 @@ export function ProductsSection() {
           className="mb-8"
         >
           <input
-            type="text"
-            placeholder="Search products..."
+            type="search"
+            placeholder="Buscar productos…"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder-muted-foreground"
           />
         </motion.div>
 
-        {/* Category Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -76,9 +80,10 @@ export function ProductsSection() {
           viewport={{ once: true }}
           className="mb-12 flex flex-wrap gap-3 justify-center"
         >
-          {CATEGORIES.map((category) => (
+          {CATEGORIAS.map((category) => (
             <button
               key={category}
+              type="button"
               onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 rounded-full font-medium transition-all ${
                 selectedCategory === category
@@ -91,7 +96,6 @@ export function ProductsSection() {
           ))}
         </motion.div>
 
-        {/* Products Grid */}
         {filteredProducts.length > 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
@@ -125,12 +129,11 @@ export function ProductsSection() {
             className="text-center py-12"
           >
             <p className="text-lg text-muted-foreground">
-              No products found matching your criteria
+              No hay productos que coincidan con tu búsqueda
             </p>
           </motion.div>
         )}
 
-        {/* Results Info */}
         {filteredProducts.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -140,7 +143,7 @@ export function ProductsSection() {
             className="text-center mt-12"
           >
             <p className="text-sm text-muted-foreground">
-              Showing {filteredProducts.length} of {products.length} products
+              Mostrando {filteredProducts.length} de {products.length} productos
             </p>
           </motion.div>
         )}

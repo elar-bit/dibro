@@ -7,8 +7,9 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'DIBRO SAC - Industrial Plumbing & Gas Parts Supplier',
-  description: 'Leading supplier of professional plumbing, gas parts, and industrial supplies for businesses in Peru. Quality products, expert service, and competitive pricing.',
+  title: 'DIBRO SAC - Suministros industriales de fontanería y gas',
+  description:
+    'Proveedor líder de fontanería profesional, piezas de gas e insumos industriales para empresas en el Perú. Calidad, asesoría y precios competitivos.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -35,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body className="font-sans antialiased">
         {children}
         <Analytics />

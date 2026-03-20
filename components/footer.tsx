@@ -9,24 +9,22 @@ export function Footer() {
     <footer className="bg-primary text-primary-foreground py-12 md:py-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Company Info */}
           <div className="space-y-3">
             <h3 className="text-lg font-bold">DIBRO SAC</h3>
             <p className="text-sm opacity-90">
-              Trusted supplier of quality industrial plumbing and gas parts
+              Proveedor de confianza en fontanería industrial y piezas de gas
             </p>
           </div>
 
-          {/* Quick Links */}
           <div className="space-y-3">
-            <h3 className="text-lg font-bold">Quick Links</h3>
+            <h3 className="text-lg font-bold">Enlaces</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href="#products"
                   className="opacity-90 hover:opacity-100 transition-opacity"
                 >
-                  Products
+                  Productos
                 </a>
               </li>
               <li>
@@ -34,7 +32,7 @@ export function Footer() {
                   href="#about"
                   className="opacity-90 hover:opacity-100 transition-opacity"
                 >
-                  About Us
+                  Nosotros
                 </a>
               </li>
               <li>
@@ -42,15 +40,14 @@ export function Footer() {
                   href="#contact"
                   className="opacity-90 hover:opacity-100 transition-opacity"
                 >
-                  Contact
+                  Contacto
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div className="space-y-3">
-            <h3 className="text-lg font-bold">Contact</h3>
+            <h3 className="text-lg font-bold">Contacto</h3>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
                 <Phone size={16} />
@@ -72,22 +69,18 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <MapPin size={16} className="flex-shrink-0 mt-0.5" />
-                <span className="opacity-90">
-                  Lima, Peru
-                </span>
+                <span className="opacity-90">Lima, Perú</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Divider */}
         <div className="h-px bg-primary-foreground/20 my-8" />
 
-        {/* Copyright */}
         <div className="text-center text-sm opacity-75">
           <p>
-            &copy; {currentYear} DIBRO SAC. All rights reserved. | Industrial
-            Plumbing & Gas Parts Supplier
+            &copy; {currentYear} DIBRO SAC. Todos los derechos reservados. |
+            Fontanería industrial y suministros de gas
           </p>
         </div>
       </div>

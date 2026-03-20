@@ -7,23 +7,25 @@ import { ProductsSection } from '@/components/products-section'
 import { ContactSection } from '@/components/contact-section'
 import { QuotationSidebar } from '@/components/quotation-sidebar'
 import { Footer } from '@/components/footer'
+import { QuotationPanelProvider } from '@/contexts/quotation-panel-context'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Header />
+    <QuotationPanelProvider>
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
 
-      <main className="flex-1">
-        <Hero />
-        <About />
-        <ProductsSection />
-        <ContactSection />
-      </main>
+        <main className="flex-1">
+          <Hero />
+          <About />
+          <ProductsSection />
+          <ContactSection />
+        </main>
 
-      <Footer />
+        <Footer />
 
-      {/* Quotation Sidebar - Fixed on Desktop, Bottom Sheet on Mobile */}
-      <QuotationSidebar />
-    </div>
+        <QuotationSidebar />
+      </div>
+    </QuotationPanelProvider>
   )
 }

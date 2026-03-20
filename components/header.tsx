@@ -37,7 +37,7 @@ export function Header() {
             width={320}
             height={264}
             priority
-            className="h-10 w-auto md:h-[52px] object-contain object-left"
+            className="h-14 w-auto sm:h-16 md:h-[72px] lg:h-20 object-contain object-left"
           />
         </button>
 

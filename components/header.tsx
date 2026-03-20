@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Menu, X, ShoppingCart } from 'lucide-react'
@@ -9,8 +9,18 @@ import { useQuotationPanel } from '@/contexts/quotation-panel-context'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const { itemCount, totalQuantity } = useQuotation()
   const { open: openCart } = useQuotationPanel()
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const barElevated = scrolled || isOpen
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -23,8 +33,14 @@ export function Header() {
   const goToProducts = () => scrollToSection('products')
 
   return (
-    <header className="bg-background border-b border-border sticky top-0 z-50 shadow-sm">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ease-out ${
+        barElevated
+          ? 'bg-muted/55 backdrop-blur-md border-b border-border/50 shadow-sm'
+          : 'bg-transparent border-b border-transparent shadow-none'
+      }`}
+    >
+      <div className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
         <button
           type="button"
           onClick={() => scrollToSection('hero')}
@@ -37,7 +53,7 @@ export function Header() {
             width={320}
             height={264}
             priority
-            className="h-14 w-auto sm:h-16 md:h-[72px] lg:h-20 object-contain object-left"
+            className="h-[60px] w-auto sm:h-[68px] md:h-[76px] lg:h-[84px] object-contain object-left"
           />
         </button>
 
@@ -108,7 +124,7 @@ export function Header() {
       </div>
 
       {isOpen && (
-        <nav className="md:hidden bg-card border-t border-border">
+        <nav className="md:hidden bg-muted/40 backdrop-blur-md border-t border-border/50">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
             <button
               type="button"

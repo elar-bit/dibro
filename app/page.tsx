@@ -8,9 +8,11 @@ import { ContactSection } from '@/components/contact-section'
 import { QuotationSidebar } from '@/components/quotation-sidebar'
 import { Footer } from '@/components/footer'
 import { QuotationPanelProvider } from '@/contexts/quotation-panel-context'
+import { QuotationProvider } from '@/hooks/use-quotation'
 
 export default function Home() {
   return (
+    <QuotationProvider>
     <QuotationPanelProvider>
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
@@ -27,5 +29,6 @@ export default function Home() {
         <QuotationSidebar />
       </div>
     </QuotationPanelProvider>
+    </QuotationProvider>
   )
 }

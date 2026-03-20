@@ -29,7 +29,8 @@ export function Hero() {
             className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
             Componentes y repuestos de primera calidad para empresas en todo el
-            Perú. Más de 15 años acompañando a profesionales del sector.
+            Perú. Más de 5 años de experiencia acompañando a profesionales del
+            sector.
           </motion.p>
 
           <motion.div
@@ -72,7 +73,7 @@ export function Hero() {
             <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto">
               <div>
                 <p className="text-2xl md:text-3xl font-bold text-primary">
-                  15+
+                  5+
                 </p>
                 <p className="text-sm text-muted-foreground">Años de experiencia</p>
               </div>

@@ -36,8 +36,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 border-b border-neutral-200/70 bg-white transition-shadow duration-300',
-        scrolled && 'shadow-sm'
+        'sticky top-0 z-50 bg-white transition-shadow duration-300',
+        scrolled && 'shadow-[0_1px_0_0_rgba(0,0,0,0.06)]'
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-3 md:py-4">
@@ -104,7 +104,7 @@ export function Header() {
       </div>
 
       {isOpen && (
-        <nav className="border-t border-neutral-200/70 bg-white md:hidden">
+        <nav className="border-t border-neutral-100/80 bg-white md:hidden">
           <div className="container mx-auto flex flex-col gap-4 px-4 py-4">
             <button
               type="button"

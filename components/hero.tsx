@@ -24,7 +24,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate flex min-h-[min(86vh,820px)] items-center overflow-hidden py-16 pb-32 md:py-20 md:pb-40"
+      className="relative isolate -mt-px flex min-h-[min(86vh,820px)] items-center overflow-hidden py-16 pb-32 md:py-20 md:pb-40"
     >
       {/* Vídeo solo dentro del hero (debajo del header en el flujo del documento) */}
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -43,14 +43,14 @@ export function Hero() {
           </video>
         )}
 
-        {/* 1) Fundido desde el header blanco hacia el vídeo (sin corte duro) */}
+        {/* 1) Tira muy fina bajo el header: fundido casi imperceptible hacia el vídeo */}
         <div
           aria-hidden
-          className="absolute inset-x-0 top-0 z-[2] h-40 bg-gradient-to-b from-white from-[8%] via-white/55 via-45% to-transparent to-100% md:h-48"
+          className="absolute inset-x-0 top-0 z-[2] h-11 bg-gradient-to-b from-white from-0% via-white/18 via-35% to-transparent to-100% md:h-12"
         />
 
-        {/* 2) Velo claro sobre el vídeo, más presente hacia abajo */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent from-[15%] via-white/22 via-45% to-white/34 to-100%" />
+        {/* 2) Velo global: casi nada arriba, un poco más hacia el centro/abajo */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent from-[6%] via-white/10 via-38% to-white/24 to-100%" />
 
         {/* 3) Fundido largo hacia Quiénes somos (oklch vía color-mix, sin línea dura) */}
         <div

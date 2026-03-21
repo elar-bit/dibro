@@ -5,7 +5,10 @@ import { Target, Eye } from 'lucide-react'
 
 export function About() {
   return (
-    <section id="about" className="py-16 md:py-24 bg-background">
+    <section
+      id="about"
+      className="relative z-10 -mt-28 bg-background pt-20 pb-16 md:-mt-36 md:pt-28 md:pb-24"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

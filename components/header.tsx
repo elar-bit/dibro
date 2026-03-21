@@ -35,12 +35,11 @@ export function Header() {
 
   const barElevated = scrolled || isOpen
 
-  const headerSurface =
-    !heroInView
-      ? 'bg-background/92 backdrop-blur-md border-b border-border/40 shadow-sm'
-      : barElevated
-        ? 'bg-white/60 backdrop-blur-md border-b border-border/30 shadow-sm'
-        : 'bg-transparent border-b border-transparent shadow-none'
+  const headerSurface = !heroInView
+    ? 'bg-gradient-to-b from-white from-0% via-white/95 via-35% to-background to-100% backdrop-blur-lg border-b border-border/30 shadow-sm'
+    : barElevated
+      ? 'bg-gradient-to-b from-white/95 from-0% via-white/70 via-45% to-white/25 to-100% backdrop-blur-xl border-b border-black/[0.06] shadow-sm'
+      : 'bg-gradient-to-b from-white/42 from-0% via-white/18 via-50% to-transparent to-100% border-b border-transparent shadow-none'
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -129,10 +128,10 @@ export function Header() {
       {isOpen && (
         <nav
           className={cn(
-            'md:hidden border-t backdrop-blur-xl',
+            'md:hidden border-t backdrop-blur-md',
             heroInView
-              ? 'bg-white/88 border-border/35'
-              : 'bg-background/95 border-border/50'
+              ? 'border-border/30 bg-gradient-to-b from-white/85 to-white/45'
+              : 'border-border/40 bg-gradient-to-b from-white/92 to-background'
           )}
         >
           <div className="container mx-auto px-4 py-4 flex flex-col gap-4">

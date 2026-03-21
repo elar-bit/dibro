@@ -44,6 +44,11 @@ export function Hero() {
         {/* Velo blanco ligero: el vídeo se intuye y mejora contraste de logo y texto */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/38 via-white/28 to-white/36" />
         <div className="absolute inset-0 bg-gradient-to-t from-white/32 via-transparent to-white/18" />
+        {/* Fundido hacia la sección siguiente (mismo color que bg-background) */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 z-[3] h-44 bg-gradient-to-t from-background from-[12%] via-background/80 via-[48%] to-transparent sm:h-52 md:h-64 md:from-[8%] md:via-[42%]"
+        />
       </div>
 
       <div className="container relative z-10 mx-auto px-4">

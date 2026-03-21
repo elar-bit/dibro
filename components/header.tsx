@@ -6,10 +6,12 @@ import { Button } from '@/components/ui/button'
 import { Menu, X, ShoppingCart } from 'lucide-react'
 import { useQuotation } from '@/hooks/use-quotation'
 import { useQuotationPanel } from '@/contexts/quotation-panel-context'
+import { cn } from '@/lib/utils'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [heroInView, setHeroInView] = useState(true)
   const { itemCount, totalQuantity } = useQuotation()
   const { open: openCart } = useQuotationPanel()
 
@@ -20,7 +22,27 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    const hero = document.getElementById('hero')
+    if (!hero) return
+    const io = new IntersectionObserver(
+      ([e]) => setHeroInView(e.isIntersecting),
+      { threshold: 0, rootMargin: '0px' }
+    )
+    io.observe(hero)
+    return () => io.disconnect()
+  }, [])
+
   const barElevated = scrolled || isOpen
+
+  const headerSurface =
+    !heroInView
+      ? 'bg-background/92 backdrop-blur-md border-b border-border/40 shadow-sm'
+      : barElevated
+        ? 'bg-black/30 backdrop-blur-sm border-b border-white/15 shadow-none'
+        : 'bg-transparent border-b border-transparent shadow-none'
+
+  const navOnVideo = heroInView
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -32,19 +54,32 @@ export function Header() {
 
   const goToProducts = () => scrollToSection('products')
 
+  const linkClass = cn(
+    'transition-colors',
+    navOnVideo
+      ? 'text-white/95 drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)] hover:text-primary'
+      : 'text-foreground hover:text-primary'
+  )
+
+  const iconBtnClass = navOnVideo
+    ? 'text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)]'
+    : 'text-foreground'
+
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ease-out ${
-        barElevated
-          ? 'bg-muted/55 backdrop-blur-md border-b border-border/50 shadow-sm'
-          : 'bg-transparent border-b border-transparent shadow-none'
-      }`}
+      className={cn(
+        'sticky top-0 z-50 transition-all duration-300 ease-out',
+        headerSurface
+      )}
     >
       <div className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
         <button
           type="button"
           onClick={() => scrollToSection('hero')}
-          className="flex items-center gap-2 shrink-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm"
+          className={cn(
+            'flex items-center gap-2 shrink-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm',
+            navOnVideo && 'drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]'
+          )}
           aria-label="DIBRO SAC — Inicio"
         >
           <Image
@@ -58,32 +93,16 @@ export function Header() {
         </button>
 
         <nav className="hidden md:flex items-center gap-8">
-          <button
-            type="button"
-            onClick={() => scrollToSection('hero')}
-            className="text-foreground hover:text-primary transition-colors"
-          >
+          <button type="button" onClick={() => scrollToSection('hero')} className={linkClass}>
             Inicio
           </button>
-          <button
-            type="button"
-            onClick={() => scrollToSection('about')}
-            className="text-foreground hover:text-primary transition-colors"
-          >
+          <button type="button" onClick={() => scrollToSection('about')} className={linkClass}>
             Nosotros
           </button>
-          <button
-            type="button"
-            onClick={() => scrollToSection('products')}
-            className="text-foreground hover:text-primary transition-colors"
-          >
+          <button type="button" onClick={() => scrollToSection('products')} className={linkClass}>
             Productos
           </button>
-          <button
-            type="button"
-            onClick={() => scrollToSection('contact')}
-            className="text-foreground hover:text-primary transition-colors"
-          >
+          <button type="button" onClick={() => scrollToSection('contact')} className={linkClass}>
             Contacto
           </button>
         </nav>
@@ -94,7 +113,11 @@ export function Header() {
               type="button"
               variant="outline"
               size="sm"
-              className="relative shrink-0 px-3"
+              className={cn(
+                'relative shrink-0 px-3',
+                navOnVideo &&
+                  'border-white/45 bg-white/10 text-white hover:bg-white/20 hover:text-white'
+              )}
               onClick={openCart}
               aria-label="Abrir cotización"
             >
@@ -104,18 +127,14 @@ export function Header() {
               </span>
             </Button>
           )}
-          <Button
-            className="hidden md:inline-flex"
-            size="sm"
-            onClick={goToProducts}
-          >
+          <Button className="hidden md:inline-flex" size="sm" onClick={goToProducts}>
             Solicitar cotización
           </Button>
 
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-foreground p-1"
+            className={cn('md:hidden p-1', iconBtnClass)}
             aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -124,40 +143,50 @@ export function Header() {
       </div>
 
       {isOpen && (
-        <nav className="md:hidden bg-muted/40 backdrop-blur-md border-t border-border/50">
+        <nav
+          className={cn(
+            'md:hidden border-t backdrop-blur-xl',
+            heroInView
+              ? 'bg-black/45 border-white/15'
+              : 'bg-background/95 border-border/50'
+          )}
+        >
           <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
             <button
               type="button"
               onClick={() => scrollToSection('hero')}
-              className="text-foreground hover:text-primary transition-colors text-left py-2"
+              className={cn(linkClass, 'text-left py-2')}
             >
               Inicio
             </button>
             <button
               type="button"
               onClick={() => scrollToSection('about')}
-              className="text-foreground hover:text-primary transition-colors text-left py-2"
+              className={cn(linkClass, 'text-left py-2')}
             >
               Nosotros
             </button>
             <button
               type="button"
               onClick={() => scrollToSection('products')}
-              className="text-foreground hover:text-primary transition-colors text-left py-2"
+              className={cn(linkClass, 'text-left py-2')}
             >
               Productos
             </button>
             <button
               type="button"
               onClick={() => scrollToSection('contact')}
-              className="text-foreground hover:text-primary transition-colors text-left py-2"
+              className={cn(linkClass, 'text-left py-2')}
             >
               Contacto
             </button>
             {itemCount > 0 && (
               <Button
                 variant="outline"
-                className="w-full gap-2 relative"
+                className={cn(
+                  'w-full gap-2 relative',
+                  heroInView && 'border-white/40 bg-white/10 text-white hover:bg-white/20'
+                )}
                 onClick={() => {
                   openCart()
                   setIsOpen(false)

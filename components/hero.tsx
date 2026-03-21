@@ -70,9 +70,11 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl font-bold leading-tight text-foreground drop-shadow-sm md:text-6xl">
+            <h1 className="text-4xl font-bold leading-tight text-white md:text-6xl [text-shadow:0_2px_16px_rgba(0,0,0,0.55),0_1px_3px_rgba(0,0,0,0.45)]">
               Fontanería industrial y
-              <span className="mt-2 block text-primary">suministros de gas</span>
+              <span className="mt-2 block text-sky-200 [text-shadow:0_2px_14px_rgba(0,0,0,0.5)]">
+                suministros de gas
+              </span>
             </h1>
           </motion.div>
 
@@ -80,7 +82,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground"
+            className="mx-auto max-w-2xl text-lg leading-relaxed text-white/92 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)]"
           >
             Componentes y repuestos de primera calidad para empresas en todo el
             Perú. Más de 5 años de experiencia acompañando a profesionales del
@@ -112,7 +114,7 @@ export function Hero() {
               }}
               variant="outline"
               size="lg"
-              className="border-border/60 bg-background/55 text-foreground backdrop-blur-sm hover:bg-background/75"
+              className="border-white/45 bg-white/12 text-white backdrop-blur-sm hover:border-white/55 hover:bg-white/20"
             >
               Contáctanos
             </Button>
@@ -126,20 +128,28 @@ export function Hero() {
           >
             <div className="grid grid-cols-3 gap-6">
               <div>
-                <p className="text-2xl font-bold text-primary md:text-3xl">5+</p>
-                <p className="text-sm text-muted-foreground">Años de experiencia</p>
+                <p className="text-2xl font-bold text-sky-200 md:text-3xl [text-shadow:0_2px_12px_rgba(0,0,0,0.45)]">
+                  5+
+                </p>
+                <p className="text-sm text-white/80 [text-shadow:0_1px_6px_rgba(0,0,0,0.45)]">
+                  Años de experiencia
+                </p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-primary md:text-3xl">
+                <p className="text-2xl font-bold text-sky-200 md:text-3xl [text-shadow:0_2px_12px_rgba(0,0,0,0.45)]">
                   500+
                 </p>
-                <p className="text-sm text-muted-foreground">Productos</p>
+                <p className="text-sm text-white/80 [text-shadow:0_1px_6px_rgba(0,0,0,0.45)]">
+                  Productos
+                </p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-primary md:text-3xl">
+                <p className="text-2xl font-bold text-sky-200 md:text-3xl [text-shadow:0_2px_12px_rgba(0,0,0,0.45)]">
                   1000+
                 </p>
-                <p className="text-sm text-muted-foreground">Clientes</p>
+                <p className="text-sm text-white/80 [text-shadow:0_1px_6px_rgba(0,0,0,0.45)]">
+                  Clientes
+                </p>
               </div>
             </div>
           </motion.div>

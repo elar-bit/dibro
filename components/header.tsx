@@ -36,15 +36,15 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 bg-white transition-shadow duration-300',
-        scrolled && 'shadow-[0_1px_0_0_rgba(0,0,0,0.06)]'
+        'sticky top-0 z-50 border-b border-white/35 bg-white/72 backdrop-blur-xl transition-[background-color,box-shadow] duration-300',
+        scrolled && 'border-white/45 bg-white/84 shadow-[0_1px_0_0_rgba(0,0,0,0.05)]'
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-3 md:py-4">
         <button
           type="button"
           onClick={() => scrollToSection('hero')}
-          className="flex shrink-0 items-center gap-2 rounded-sm text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+          className="flex shrink-0 items-center gap-2 rounded-sm text-left drop-shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           aria-label="DIBRO SAC — Inicio"
         >
           <Image
@@ -53,7 +53,7 @@ export function Header() {
             width={320}
             height={264}
             priority
-            className="h-[60px] w-auto object-contain object-left sm:h-[68px] md:h-[76px] lg:h-[84px]"
+            className="h-[60px] w-auto object-contain object-left drop-shadow-[0_1px_3px_rgba(0,0,0,0.12)] sm:h-[68px] md:h-[76px] lg:h-[84px]"
           />
         </button>
 
@@ -104,7 +104,7 @@ export function Header() {
       </div>
 
       {isOpen && (
-        <nav className="border-t border-neutral-100/80 bg-white md:hidden">
+        <nav className="border-t border-white/40 bg-white/88 backdrop-blur-xl md:hidden">
           <div className="container mx-auto flex flex-col gap-4 px-4 py-4">
             <button
               type="button"

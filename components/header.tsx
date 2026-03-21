@@ -36,9 +36,9 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 border-b border-white/20 bg-white/48 backdrop-blur-2xl transition-[background-color,box-shadow,border-color] duration-300',
+        'sticky top-0 z-50 border-b border-white/[0.12] bg-white/[0.22] backdrop-blur-2xl backdrop-saturate-150 transition-[background-color,box-shadow,border-color] duration-300 supports-[backdrop-filter]:bg-white/[0.18]',
         scrolled &&
-          'border-white/28 bg-white/62 shadow-[0_1px_0_0_rgba(0,0,0,0.04)]'
+          'border-white/[0.18] bg-white/[0.38] shadow-[0_1px_0_0_rgba(0,0,0,0.03)] supports-[backdrop-filter]:bg-white/[0.32]'
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-3 md:py-4">
@@ -105,7 +105,7 @@ export function Header() {
       </div>
 
       {isOpen && (
-        <nav className="border-t border-white/25 bg-white/65 backdrop-blur-2xl md:hidden">
+        <nav className="border-t border-white/[0.14] bg-white/[0.42] backdrop-blur-2xl backdrop-saturate-150 md:hidden supports-[backdrop-filter]:bg-white/[0.36]">
           <div className="container mx-auto flex flex-col gap-4 px-4 py-4">
             <button
               type="button"

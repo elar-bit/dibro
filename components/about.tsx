@@ -7,7 +7,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative z-10 -mt-28 bg-background pt-20 pb-16 md:-mt-36 md:pt-28 md:pb-24"
+      className="relative bg-background pt-10 pb-16 md:pt-14 md:pb-24"
     >
       <div className="container mx-auto px-4">
         <motion.div

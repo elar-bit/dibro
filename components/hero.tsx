@@ -24,8 +24,9 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate -mt-32 flex min-h-[min(92vh,880px)] items-center overflow-hidden pt-32 pb-20 md:pb-28"
+      className="relative isolate flex min-h-[min(86vh,820px)] items-center overflow-hidden py-16 pb-32 md:py-20 md:pb-40"
     >
+      {/* Vídeo solo dentro del hero (debajo del header en el flujo del documento) */}
       <div className="pointer-events-none absolute inset-0 z-0">
         {!reduceMotion && (
           <video
@@ -41,13 +42,24 @@ export function Hero() {
             <source src="/bgvideo.mp4" type="video/mp4" />
           </video>
         )}
-        {/* Velo blanco ligero: el vídeo se intuye y mejora contraste de logo y texto */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/38 via-white/28 to-white/36" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/32 via-transparent to-white/18" />
-        {/* Fundido hacia la sección siguiente (mismo color que bg-background) */}
+
+        {/* 1) Fundido desde el header blanco hacia el vídeo (sin corte duro) */}
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 z-[3] h-44 bg-gradient-to-t from-background from-[12%] via-background/80 via-[48%] to-transparent sm:h-52 md:h-64 md:from-[8%] md:via-[42%]"
+          className="absolute inset-x-0 top-0 z-[2] h-40 bg-gradient-to-b from-white from-[8%] via-white/55 via-45% to-transparent to-100% md:h-48"
+        />
+
+        {/* 2) Velo claro sobre el vídeo, más presente hacia abajo */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent from-[15%] via-white/22 via-45% to-white/34 to-100%" />
+
+        {/* 3) Fundido largo hacia Quiénes somos (oklch vía color-mix, sin línea dura) */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-[min(50vh,400px)] min-h-[220px]"
+          style={{
+            background:
+              'linear-gradient(to top, var(--background) 0%, color-mix(in oklch, var(--background) 78%, transparent) 26%, color-mix(in oklch, var(--background) 38%, transparent) 52%, transparent 100%)',
+          }}
         />
       </div>
 
@@ -60,9 +72,7 @@ export function Hero() {
           >
             <h1 className="text-4xl font-bold leading-tight text-foreground drop-shadow-sm md:text-6xl">
               Fontanería industrial y
-              <span className="mt-2 block text-primary">
-                suministros de gas
-              </span>
+              <span className="mt-2 block text-primary">suministros de gas</span>
             </h1>
           </motion.div>
 
@@ -112,14 +122,12 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mx-auto max-w-xl border-t border-border/40 pt-8 md:pt-12"
+            className="mx-auto max-w-xl pt-8 md:pt-12"
           >
             <div className="grid grid-cols-3 gap-6">
               <div>
                 <p className="text-2xl font-bold text-primary md:text-3xl">5+</p>
-                <p className="text-sm text-muted-foreground">
-                  Años de experiencia
-                </p>
+                <p className="text-sm text-muted-foreground">Años de experiencia</p>
               </div>
               <div>
                 <p className="text-2xl font-bold text-primary md:text-3xl">

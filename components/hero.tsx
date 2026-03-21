@@ -41,9 +41,9 @@ export function Hero() {
             <source src="/bgvideo.mp4" type="video/mp4" />
           </video>
         )}
-        {/* Velos suaves: el vídeo se ve con claridad; refuerzo ligero arriba/abajo para el texto */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/25" />
+        {/* Velo blanco ligero: el vídeo se intuye y mejora contraste de logo y texto */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/38 via-white/28 to-white/36" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/32 via-transparent to-white/18" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4">
@@ -53,9 +53,9 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl font-bold leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] md:text-6xl">
+            <h1 className="text-4xl font-bold leading-tight text-foreground drop-shadow-sm md:text-6xl">
               Fontanería industrial y
-              <span className="mt-2 block text-primary drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
+              <span className="mt-2 block text-primary">
                 suministros de gas
               </span>
             </h1>
@@ -65,7 +65,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mx-auto max-w-2xl text-lg leading-relaxed text-white/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]"
+            className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground"
           >
             Componentes y repuestos de primera calidad para empresas en todo el
             Perú. Más de 5 años de experiencia acompañando a profesionales del
@@ -97,7 +97,7 @@ export function Hero() {
               }}
               variant="outline"
               size="lg"
-              className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+              className="border-border/60 bg-background/55 text-foreground backdrop-blur-sm hover:bg-background/75"
             >
               Contáctanos
             </Button>
@@ -107,12 +107,12 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mx-auto max-w-xl border-t border-white/25 pt-8 md:pt-12"
+            className="mx-auto max-w-xl border-t border-border/40 pt-8 md:pt-12"
           >
             <div className="grid grid-cols-3 gap-6">
               <div>
                 <p className="text-2xl font-bold text-primary md:text-3xl">5+</p>
-                <p className="text-sm text-white/75">
+                <p className="text-sm text-muted-foreground">
                   Años de experiencia
                 </p>
               </div>
@@ -120,13 +120,13 @@ export function Hero() {
                 <p className="text-2xl font-bold text-primary md:text-3xl">
                   500+
                 </p>
-                <p className="text-sm text-white/75">Productos</p>
+                <p className="text-sm text-muted-foreground">Productos</p>
               </div>
               <div>
                 <p className="text-2xl font-bold text-primary md:text-3xl">
                   1000+
                 </p>
-                <p className="text-sm text-white/75">Clientes</p>
+                <p className="text-sm text-muted-foreground">Clientes</p>
               </div>
             </div>
           </motion.div>

@@ -39,10 +39,8 @@ export function Header() {
     !heroInView
       ? 'bg-background/92 backdrop-blur-md border-b border-border/40 shadow-sm'
       : barElevated
-        ? 'bg-black/30 backdrop-blur-sm border-b border-white/15 shadow-none'
+        ? 'bg-white/60 backdrop-blur-md border-b border-border/30 shadow-sm'
         : 'bg-transparent border-b border-transparent shadow-none'
-
-  const navOnVideo = heroInView
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -54,16 +52,9 @@ export function Header() {
 
   const goToProducts = () => scrollToSection('products')
 
-  const linkClass = cn(
-    'transition-colors',
-    navOnVideo
-      ? 'text-white/95 drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)] hover:text-primary'
-      : 'text-foreground hover:text-primary'
-  )
+  const linkClass = 'text-foreground hover:text-primary transition-colors'
 
-  const iconBtnClass = navOnVideo
-    ? 'text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)]'
-    : 'text-foreground'
+  const iconBtnClass = 'text-foreground'
 
   return (
     <header
@@ -76,10 +67,7 @@ export function Header() {
         <button
           type="button"
           onClick={() => scrollToSection('hero')}
-          className={cn(
-            'flex items-center gap-2 shrink-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm',
-            navOnVideo && 'drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]'
-          )}
+          className="flex items-center gap-2 shrink-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm drop-shadow-sm"
           aria-label="DIBRO SAC — Inicio"
         >
           <Image
@@ -113,11 +101,7 @@ export function Header() {
               type="button"
               variant="outline"
               size="sm"
-              className={cn(
-                'relative shrink-0 px-3',
-                navOnVideo &&
-                  'border-white/45 bg-white/10 text-white hover:bg-white/20 hover:text-white'
-              )}
+              className="relative shrink-0 px-3"
               onClick={openCart}
               aria-label="Abrir cotización"
             >
@@ -147,7 +131,7 @@ export function Header() {
           className={cn(
             'md:hidden border-t backdrop-blur-xl',
             heroInView
-              ? 'bg-black/45 border-white/15'
+              ? 'bg-white/88 border-border/35'
               : 'bg-background/95 border-border/50'
           )}
         >
@@ -183,10 +167,7 @@ export function Header() {
             {itemCount > 0 && (
               <Button
                 variant="outline"
-                className={cn(
-                  'w-full gap-2 relative',
-                  heroInView && 'border-white/40 bg-white/10 text-white hover:bg-white/20'
-                )}
+                className="w-full gap-2 relative"
                 onClick={() => {
                   openCart()
                   setIsOpen(false)

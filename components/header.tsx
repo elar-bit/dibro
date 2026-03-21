@@ -33,12 +33,16 @@ export function Header() {
 
   const linkClass = 'text-foreground hover:text-primary transition-colors'
 
+  const glassButtonOutline =
+    'border-white/35 bg-[rgba(255,255,255,0.06)] shadow-none backdrop-blur-sm hover:bg-[rgba(255,255,255,0.14)] dark:border-white/20 dark:bg-[rgba(255,255,255,0.08)] dark:hover:bg-[rgba(255,255,255,0.14)]'
+
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 border-b border-white/[0.06] bg-white/[0.08] backdrop-blur-xl backdrop-saturate-125 transition-[background-color,box-shadow,border-color] duration-300 supports-[backdrop-filter]:bg-white/[0.05]',
+        // Poco blur: menos “capa blanca”; tinte mínimo en rgba para que no dependa de opacidades Tailwind
+        'sticky top-0 z-50 border-b border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.035)] backdrop-blur-sm transition-[background-color,box-shadow,border-color,backdrop-filter] duration-300',
         scrolled &&
-          'border-white/[0.10] bg-white/[0.20] shadow-[0_1px_0_0_rgba(0,0,0,0.025)] supports-[backdrop-filter]:bg-white/[0.14]'
+          'border-[rgba(255,255,255,0.18)] bg-[rgba(255,255,255,0.12)] shadow-[0_1px_0_0_rgba(0,0,0,0.04)] backdrop-blur-md'
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-3 md:py-4">
@@ -79,7 +83,7 @@ export function Header() {
               type="button"
               variant="outline"
               size="sm"
-              className="relative shrink-0 px-3"
+              className={cn('relative shrink-0 px-3', glassButtonOutline)}
               onClick={openCart}
               aria-label="Abrir cotización"
             >
@@ -105,7 +109,7 @@ export function Header() {
       </div>
 
       {isOpen && (
-        <nav className="border-t border-white/[0.08] bg-white/[0.22] backdrop-blur-xl backdrop-saturate-125 md:hidden supports-[backdrop-filter]:bg-white/[0.16]">
+        <nav className="border-t border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.07)] backdrop-blur-md md:hidden">
           <div className="container mx-auto flex flex-col gap-4 px-4 py-4">
             <button
               type="button"
@@ -138,7 +142,7 @@ export function Header() {
             {itemCount > 0 && (
               <Button
                 variant="outline"
-                className="relative w-full gap-2"
+                className={cn('relative w-full gap-2', glassButtonOutline)}
                 onClick={() => {
                   openCart()
                   setIsOpen(false)

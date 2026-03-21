@@ -128,28 +128,16 @@ export function Hero() {
           >
             <div className="grid grid-cols-3 gap-6">
               <div>
-                <p className="text-2xl font-bold text-sky-200 md:text-3xl [text-shadow:0_2px_12px_rgba(0,0,0,0.45)]">
-                  5+
-                </p>
-                <p className="text-sm text-white/80 [text-shadow:0_1px_6px_rgba(0,0,0,0.45)]">
-                  Años de experiencia
-                </p>
+                <p className="text-2xl font-bold text-primary md:text-3xl">5+</p>
+                <p className="text-sm text-foreground/80">Años de experiencia</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-sky-200 md:text-3xl [text-shadow:0_2px_12px_rgba(0,0,0,0.45)]">
-                  500+
-                </p>
-                <p className="text-sm text-white/80 [text-shadow:0_1px_6px_rgba(0,0,0,0.45)]">
-                  Productos
-                </p>
+                <p className="text-2xl font-bold text-primary md:text-3xl">500+</p>
+                <p className="text-sm text-foreground/80">Productos</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-sky-200 md:text-3xl [text-shadow:0_2px_12px_rgba(0,0,0,0.45)]">
-                  1000+
-                </p>
-                <p className="text-sm text-white/80 [text-shadow:0_1px_6px_rgba(0,0,0,0.45)]">
-                  Clientes
-                </p>
+                <p className="text-2xl font-bold text-primary md:text-3xl">1000+</p>
+                <p className="text-sm text-foreground/80">Clientes</p>
               </div>
             </div>
           </motion.div>

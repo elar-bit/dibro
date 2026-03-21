@@ -36,9 +36,9 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 border-b border-white/[0.12] bg-white/[0.22] backdrop-blur-2xl backdrop-saturate-150 transition-[background-color,box-shadow,border-color] duration-300 supports-[backdrop-filter]:bg-white/[0.18]',
+        'sticky top-0 z-50 border-b border-white/[0.06] bg-white/[0.08] backdrop-blur-xl backdrop-saturate-125 transition-[background-color,box-shadow,border-color] duration-300 supports-[backdrop-filter]:bg-white/[0.05]',
         scrolled &&
-          'border-white/[0.18] bg-white/[0.38] shadow-[0_1px_0_0_rgba(0,0,0,0.03)] supports-[backdrop-filter]:bg-white/[0.32]'
+          'border-white/[0.10] bg-white/[0.20] shadow-[0_1px_0_0_rgba(0,0,0,0.025)] supports-[backdrop-filter]:bg-white/[0.14]'
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-3 md:py-4">
@@ -105,7 +105,7 @@ export function Header() {
       </div>
 
       {isOpen && (
-        <nav className="border-t border-white/[0.14] bg-white/[0.42] backdrop-blur-2xl backdrop-saturate-150 md:hidden supports-[backdrop-filter]:bg-white/[0.36]">
+        <nav className="border-t border-white/[0.08] bg-white/[0.22] backdrop-blur-xl backdrop-saturate-125 md:hidden supports-[backdrop-filter]:bg-white/[0.16]">
           <div className="container mx-auto flex flex-col gap-4 px-4 py-4">
             <button
               type="button"

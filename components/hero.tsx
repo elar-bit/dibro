@@ -1,24 +1,63 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [reduceMotion, setReduceMotion] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduceMotion(mq.matches)
+    const onChange = () => setReduceMotion(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  useEffect(() => {
+    if (reduceMotion || !videoRef.current) return
+    videoRef.current.play().catch(() => {})
+  }, [reduceMotion])
+
   return (
     <section
       id="hero"
-      className="py-20 md:py-32 bg-gradient-to-b from-card to-background"
+      className="relative isolate flex min-h-[min(92vh,880px)] items-center overflow-hidden py-20 md:py-28"
     >
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center space-y-6 md:space-y-8">
+      <div className="pointer-events-none absolute inset-0 z-0">
+        {!reduceMotion && (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 h-full w-full scale-105 object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden
+          >
+            <source src="/bgvideo.mp4" type="video/mp4" />
+          </video>
+        )}
+        {/* Capa para legibilidad; sin vídeo queda como fondo del hero */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/88 via-background/72 to-background/90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+      </div>
+
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="mx-auto max-w-3xl space-y-6 text-center md:space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
+            <h1 className="text-4xl font-bold leading-tight text-foreground drop-shadow-sm md:text-6xl">
               Fontanería industrial y
-              <span className="block text-primary mt-2">suministros de gas</span>
+              <span className="mt-2 block text-primary drop-shadow-sm">
+                suministros de gas
+              </span>
             </h1>
           </motion.div>
 
@@ -26,7 +65,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="mx-auto max-w-2xl text-lg leading-relaxed text-foreground/90"
           >
             Componentes y repuestos de primera calidad para empresas en todo el
             Perú. Más de 5 años de experiencia acompañando a profesionales del
@@ -37,7 +76,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col justify-center gap-4 sm:flex-row"
           >
             <Button
               onClick={() => {
@@ -58,7 +97,7 @@ export function Hero() {
               }}
               variant="outline"
               size="lg"
-              className="text-base"
+              className="border-foreground/25 bg-background/40 text-base backdrop-blur-sm hover:bg-background/55"
             >
               Contáctanos
             </Button>
@@ -68,23 +107,23 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="pt-8 md:pt-12 border-t border-border"
+            className="mx-auto max-w-xl border-t border-foreground/15 pt-8 md:pt-12"
           >
-            <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto">
+            <div className="grid grid-cols-3 gap-6">
               <div>
-                <p className="text-2xl md:text-3xl font-bold text-primary">
-                  5+
+                <p className="text-2xl font-bold text-primary md:text-3xl">5+</p>
+                <p className="text-sm text-muted-foreground">
+                  Años de experiencia
                 </p>
-                <p className="text-sm text-muted-foreground">Años de experiencia</p>
               </div>
               <div>
-                <p className="text-2xl md:text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold text-primary md:text-3xl">
                   500+
                 </p>
                 <p className="text-sm text-muted-foreground">Productos</p>
               </div>
               <div>
-                <p className="text-2xl md:text-3xl font-bold text-primary">
+                <p className="text-2xl font-bold text-primary md:text-3xl">
                   1000+
                 </p>
                 <p className="text-sm text-muted-foreground">Clientes</p>
